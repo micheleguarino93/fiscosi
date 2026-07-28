@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Fiscale SRL "Salva-Azienda"</title>
+    <!-- Libreria EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("Mh79Trdgb6PvKDwAs");
+        })();
+    </script>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 24px;
+        }
+
+        .logo-img {
+            max-width: 280px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.15;
+            font-weight: 900;
+            margin: 0 0 8px 0;
+            color: #000000;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 700;
+            color: #555555;
+            margin-bottom: 30px;
+        }
+
+        .cta-container-top {
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .excel-mockup {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 2px solid #000000;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            position: relative;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-size: 60px;
+            font-weight: 900;
+            color: rgba(220, 38, 38, 0.15);
+            letter-spacing: 6px;
+            pointer-events: none;
+            z-index: 10;
+            white-space: nowrap;
+            border: 4px dashed rgba(220, 38, 38, 0.15);
+            padding: 10px 30px;
+            text-transform: uppercase;
+        }
+
+        .excel-header-bar {
+            background-color: #107c41;
+            color: #ffffff;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .excel-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .excel-table th, .excel-table td {
+            border: 1px solid #d4d4d4;
+            padding: 6px 8px;
+            text-align: left;
+        }
+
+        .excel-table th {
+            background-color: #f3f3f3;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .excel-table td {
+            color: #111111;
+        }
+
+        .excel-highlight {
+            background-color: #e6f4ea;
+            font-weight: bold;
+            color: #137333;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .benefits-list li {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #000000;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #1e293b;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .benefits-list li strong {
+            color: #000000;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+
+        .cta-container-bottom {
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 20px;
+        }
+
+        .btn-cta {
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 18px 24px;
+            font-size: 19px;
+            font-weight: 900;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-cta:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+        }
+
+        .page-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #666666;
+        }
+
+        .page-footer a {
+            color: #000000;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* POPUP MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-card {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 2px solid #000000;
+            text-align: left;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #000000;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #555555;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 0 20px 0;
+            color: #000000;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            color: #000000;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            background-color: #f9f9f9;
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            accent-color: #000000;
+            cursor: pointer;
+        }
+
+        .form-checkbox-group label {
+            font-size: 13px;
+            color: #444444;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
+        .form-checkbox-group a {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: 900;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit:hover {
+            background-color: #333333;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 30px;
+            }
+            .page-container {
+                padding: 20px 15px 40px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="logo-container">
+            <img src="fiscosi.png" alt="Logo Fisco Sì" class="logo-img">
+        </div>
+
+        <h1>Audit Fiscale SRL "Salva-Azienda"</h1>
+        <div class="subtitle">7 strumenti legali per ridurre le imposte di una SRL</div>
+
+        <div class="cta-container-top">
+            <button class="btn-cta openModalBtn">Ti richiamiamo noi</button>
+        </div>
+
+        <div class="excel-mockup">
+            <div class="watermark">FAC-SIMILE</div>
+            <div class="excel-header-bar">
+                <span>📊 Audit_Fiscale_SRL_Report_Completo.xlsx</span>
+                <span>v3.2 [Active]</span>
+            </div>
+            <table class="excel-table">
+                <thead>
+                    <tr>
+                        <th>Parametro / Voce di Bilancio SRL</th>
+                        <th>Stato Pre-Audit</th>
+                        <th>Post-Audit Avanzato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Utile Lordo Ante Imposte</td>
+                        <td>€ 210.000,00</td>
+                        <td>€ 210.000,00</td>
+                    </tr>
+                    <tr>
+                        <td>2. Imponibile IRES (24%)</td>
+                        <td>€ 50.400,00</td>
+                        <td class="excel-highlight">€ 34.800,00</td>
+                    </tr>
+                    <tr>
+                        <td>3. Imponibile IRAP (~3.9%)</td>
+                        <td>€ 8.190,00</td>
+                        <td class="excel-highlight">€ 5.070,00</td>
+                    </tr>
+                    <tr>
+                        <td>4. Compenso Amministratore / Dividendi</td>
+                        <td>Non Bilanciato (Aliquota max)</td>
+                        <td class="excel-highlight">Ottimizzato (IRPEF Minima)</td>
+                    </tr>
+                    <tr>
+                        <td>5. Timing Fatturazione & Competenza Costi</td>
+                        <td>Ordinaria (Rischio picchi)</td>
+                        <td class="excel-highlight">Pianificazione Strategica</td>
+                    </tr>
+                    <tr>
+                        <td>6. Welfare Aziendale & Fringe Benefit</td>
+                        <td>€ 0,00 (Tassato)</td>
+                        <td class="excel-highlight">€ 8.000,00 Deducibili 100%</td>
+                    </tr>
+                    <tr>
+                        <td>7. Royalties & Cessione Licenza Marchio</td>
+                        <td>Assenti</td>
+                        <td class="excel-highlight">€ 14.000,00 Deducibili</td>
+                    </tr>
+                    <tr>
+                        <td>8. Crediti d'Imposta (Transizione 5.0 / R&S)</td>
+                        <td>€ 0,00 (Ignorati)</td>
+                        <td class="excel-highlight">€ 18.500,00 Recuperati</td>
+                    </tr>
+                    <tr>
+                        <td>9. Spese di Rappresentanza & Inerenza</td>
+                        <td>Sottoutilizzate (€ 1.500)</td>
+                        <td class="excel-highlight">€ 6.200,00 Deducibili</td>
+                    </tr>
+                    <tr>
+                        <td>10. Accantonamento TFR & Fondi Rischi</td>
+                        <td>Standard</td>
+                        <td class="excel-highlight">Deduzione Automatica</td>
+                    </tr>
+                    <tr>
+                        <td>11. Tassazione per Trasparenza (Art. 116)</td>
+                        <td>Non Valutata</td>
+                        <td class="excel-highlight">Verificata / Applicata</td>
+                    </tr>
+                    <tr>
+                        <td>12. Holding di Famiglia (Regime PEX)</td>
+                        <td>Assente (Dividendo al 26%)</td>
+                        <td class="excel-highlight">Attiva (Tassazione 1,2%)</td>
+                    </tr>
+                    <tr>
+                        <td>13. Indici Affidabilità Fiscale (ISA)</td>
+                        <td>Score 6.1 (A Rischio)</td>
+                        <td class="excel-highlight">Score 8.9 (Affidabile)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>14. RISPARMIO FISCALE NETTO ANNUO</strong></td>
+                        <td style="color: #c5221f;"><strong>Base</strong></td>
+                        <td class="excel-highlight" style="font-size: 11px;">+ € 22.840,00 /anno</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul class="benefits-list">
+            <li>
+                <strong>Scegliere come remunerare l’imprenditore</strong>
+                Combinare in modo ottimale il compenso dell'amministratore (deducibile al 100% dalla SRL), i dividendi (tassati al 26%) e gli eventuali finanziamenti soci con interessi, tenendo conto dell'aliquota marginale IRPEF del socio e della struttura societaria.
+            </li>
+            <li>
+                <strong>Gestire il timing delle spese e dei ricavi</strong>
+                Sfruttare la competenza fiscale pianificando gli investimenti, le spese deducibili (come l'anticipo di beni strumentali o di spese di formazione e consulenze) e la fatturazione dei ricavi per mitigare gli anni a utile più elevato.
+            </li>
+            <li>
+                <strong>Utilizzare le deduzioni e detrazioni spesso dimenticate</strong>
+                Sfruttare correttamente crediti d'imposta (R&S, Transizione 5.0, formazione 4.0), le spese di rappresentanza, le erogazioni liberali a enti del Terzo Settore/ONLUS e l'accantonamento automatico al TFR per ridurre l'utile imponibile.
+            </li>
+            <li>
+                <strong>Valutare l’opzione della tassazione per trasparenza</strong>
+                Optare per il regime (art. 116 TUIR) che imputa il reddito direttamente ai soci persone fisiche (se detengono tra il 10% e il 75% delle quote) tassandolo con l'IRPEF anziché con l'IRES, scelta particolarmente vantaggiosa se i soci hanno scaglioni IRPEF bassi o se vi sono perdite da compensare.
+            </li>
+            <li>
+                <strong>Strutturare correttamente il gruppo societario</strong>
+                Introdurre una holding di famiglia per beneficiare del regime PEX sui dividendi (con una tassazione effettiva ridotta al 1,2% anziché al 26%), compensare utili e perdite all'interno del gruppo tramite il consolidato fiscale, facilitare il passaggio generazionale e proteggere il patrimonio aziendale dai rischi operativi.
+            </li>
+            <li>
+                <strong>Sfruttare welfare aziendale e fringe benefit</strong>
+                Coprire spese personali o familiari (come utenze, beni o servizi) tramite i limiti di esenzione dei fringe benefit, abbattendo l'utile tassabile senza gravare con oneri fiscali o contributivi aggiuntivi sul dipendente o sull'amministratore.
+            </li>
+            <li>
+                <strong>Ottimizzare i costi tramite royalties su marchi</strong>
+                Registrare il marchio come persona fisica e concederlo in licenza d'uso alla propria SRL, generando così costi fiscalmente deducibili per l'azienda e redditi tassati in modo vantaggioso per il socio.
+            </li>
+        </ul>
+
+        <div class="cta-container-bottom">
+            <button class="btn-cta openModalBtn">Ti richiamiamo noi</button>
+        </div>
+
+        <footer class="page-footer">
+            &copy; 2026 Fisco Sì &bull; Tutti i diritti riservati &bull; <a href="#privacy" id="privacyLink">Privacy Policy</a>
+        </footer>
+    </div>
+
+    <!-- POPUP MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <div id="formContent">
+                <h3 class="modal-title">Ti richiamiamo noi</h3>
+                <form id="callForm">
+                    <div class="form-group">
+                        <label for="phone">Numero di Telefono</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="Es. 333 1234567" required>
+                    </div>
+                    <div class="form-checkbox-group">
+                        <input type="checkbox" id="gdprConsent" name="gdprConsent" required>
+                        <label for="gdprConsent">
+                            Acconsento al trattamento dei dati personali ai sensi del GDPR (Regolamento UE 2016/679) per essere ricontattato in merito alla richiesta. Leggi la <a href="#privacy" target="_blank">Privacy Policy</a>.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn">Ti richiamiamo noi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalOverlay = document.getElementById('modalOverlay');
+        const openModalBtns = document.querySelectorAll('.openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const privacyLink = document.getElementById('privacyLink');
+        const callForm = document.getElementById('callForm');
+
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalOverlay.classList.add('active');
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert("Informativa sulla Privacy: I dati raccolti sono trattati esclusivamente per finalità di ricontatto commerciale e consulenziale nel rispetto del GDPR.");
+        });
+
+        // Invio tramite EmailJS inserendo le chiavi fornite
+        callForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.textContent = "Invio in corso...";
+            submitBtn.disabled = true;
+
+            const templateParams = {
+                phone: document.getElementById('phone').value
+            };
+
+            emailjs.send("service_b6i8u3a", "template_duc1ojk", templateParams)
+                .then(function(response) {
+                    window.location.href = "grazie.html";
+                }, function(error) {
+                    alert("Errore nell'invio della richiesta. Riprova.");
+                    submitBtn.textContent = "Ti richiamiamo noi";
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>

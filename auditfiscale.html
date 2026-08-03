@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Audit Fiscale Strategico per SRL: analisi della struttura fiscale, economica, societaria e patrimoniale dell'impresa.">
+  <title>Audit Fiscale Strategico per SRL | FiscoSÌ.it</title>
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #626262;
+      --line: #dedede;
+      --paper: #ffffff;
+      --soft: #f5f5f2;
+      --accent: #f3df22;
+      --max: 760px;
+      --header-h: 72px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 28px); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.68;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: var(--header-h);
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      width: min(1180px, calc(100% - 36px));
+      min-height: var(--header-h);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      flex: 0 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .brand mark {
+      padding: 0 .08em;
+      color: inherit;
+      background: var(--accent);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      margin-left: auto;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .menu a {
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .menu a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .top-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      background: var(--accent);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .025em;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .top-cta {
+      flex: 0 0 auto;
+      padding: 11px 15px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .button {
+      padding: 15px 21px;
+      font-size: 14px;
+    }
+    .top-cta:hover,
+    .button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .menu-toggle {
+      display: none;
+      margin-left: auto;
+      padding: 8px 0;
+      border: 0;
+      background: transparent;
+      font: 800 13px Arial, Helvetica, sans-serif;
+      cursor: pointer;
+    }
+
+    main { overflow: hidden; }
+    .article {
+      width: min(var(--max), calc(100% - 38px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 92px 0 74px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.08;
+      text-wrap: balance;
+    }
+    h1 {
+      max-width: 780px;
+      font-size: clamp(46px, 7vw, 78px);
+      letter-spacing: -.045em;
+    }
+    .hero-lead {
+      max-width: 700px;
+      margin: 30px 0 0;
+      font-size: clamp(22px, 3vw, 28px);
+      line-height: 1.45;
+    }
+
+    section {
+      padding: 76px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    h2 {
+      margin-bottom: 28px;
+      font-size: clamp(36px, 5vw, 54px);
+      letter-spacing: -.035em;
+    }
+    h3 {
+      margin: 40px 0 12px;
+      font-size: 24px;
+      letter-spacing: -.02em;
+    }
+    p { margin: 0 0 24px; }
+    .standfirst {
+      font-size: 24px;
+      line-height: 1.48;
+    }
+    .large-line {
+      margin: 38px 0;
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -.025em;
+    }
+    .highlight {
+      padding: 0 .08em;
+      background: linear-gradient(transparent 58%, var(--accent) 58%);
+    }
+
+    .editorial-list,
+    .numbered {
+      margin: 30px 0 38px;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--ink);
+    }
+    .editorial-list li,
+    .numbered li {
+      position: relative;
+      padding: 17px 0 17px 36px;
+      border-bottom: 1px solid var(--line);
+    }
+    .editorial-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+    }
+    .numbered { counter-reset: item; }
+    .numbered li { padding-left: 52px; }
+    .numbered li::before {
+      counter-increment: item;
+      content: counter(item, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 18px;
+      font: 900 13px Arial, Helvetica, sans-serif;
+      letter-spacing: .06em;
+    }
+
+    blockquote {
+      margin: 40px 0;
+      padding: 24px 0 24px 28px;
+      border-left: 5px solid var(--accent);
+      font-size: 25px;
+      line-height: 1.42;
+      font-weight: 700;
+    }
+
+    .result-grid {
+      margin: 34px 0;
+      border-top: 1px solid var(--ink);
+    }
+    .result-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 25px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .result-row strong {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .action-box {
+      padding: 42px;
+      background: var(--soft);
+      border: 1px solid var(--ink);
+    }
+    .action-box h2 { font-size: clamp(34px, 5vw, 50px); }
+    .action-note {
+      margin-top: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lead-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      font: 800 12px Arial, Helvetica, sans-serif;
+      letter-spacing: .045em;
+      text-transform: uppercase;
+    }
+    input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 13px;
+      border: 1px solid #8b8b8b;
+      border-radius: 0;
+      background: #fff;
+      color: var(--ink);
+      font: 16px Arial, Helvetica, sans-serif;
+    }
+    input:focus { outline: 3px solid var(--accent); outline-offset: 1px; }
+    .consent {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font: 13px/1.45 Arial, Helvetica, sans-serif;
+      color: #444;
+    }
+    .consent input { width: 18px; min-height: 18px; margin-top: 1px; }
+    .lead-form .button { grid-column: 1 / -1; cursor: pointer; }
+
+    .faq { padding-bottom: 54px; }
+    details {
+      border-top: 1px solid var(--ink);
+    }
+    details:last-of-type { border-bottom: 1px solid var(--ink); }
+    summary {
+      padding: 23px 42px 23px 0;
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 18px;
+      font: 400 29px Arial, Helvetica, sans-serif;
+    }
+    details[open] summary::after { content: "−"; }
+    details p { padding: 0 0 24px; color: #333; }
+
+    .closing {
+      padding-top: 62px;
+      text-align: center;
+      border-bottom: 0;
+    }
+    .closing h2 { max-width: 700px; margin-inline: auto; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0 48px;
+      color: var(--muted);
+      font: 12px/1.55 Arial, Helvetica, sans-serif;
+    }
+
+
+    body.modal-open { overflow: hidden; }
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      place-items: center;
+      padding: 22px;
+      background: rgba(0,0,0,.62);
+    }
+    .modal.open { display: grid; }
+    .modal-panel {
+      position: relative;
+      width: min(560px, 100%);
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
+      padding: 38px;
+      background: #fff;
+      border: 1px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+    .modal-close {
+      position: absolute;
+      top: 13px;
+      right: 15px;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      background: transparent;
+      font: 32px/1 Arial, Helvetica, sans-serif;
+      cursor: pointer;
+    }
+    .modal-panel h2 { margin: 8px 45px 16px 0; font-size: clamp(31px, 5vw, 44px); }
+    .modal-panel > p { margin-bottom: 18px; }
+
+    @media (max-width: 880px) {
+      .menu-toggle { display: block; }
+      .top-cta { margin-left: 8px; }
+      .menu {
+        display: none;
+        position: absolute;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 18px 22px 22px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+      .menu.open { display: flex; }
+    }
+
+    @media (max-width: 580px) {
+      :root { --header-h: 64px; }
+      body { font-size: 18px; }
+      .topbar-inner { width: min(100% - 24px, 1180px); gap: 10px; }
+      .brand { font-size: 20px; }
+      .top-cta { padding: 9px 10px; font-size: 10px; box-shadow: 2px 2px 0 var(--ink); }
+      .menu-toggle { font-size: 0; }
+      .menu-toggle::before { content: "MENU"; font-size: 11px; }
+      .article { width: min(100% - 28px, var(--max)); }
+      .hero { padding: 62px 0 54px; }
+      section { padding: 58px 0; }
+      .action-box { padding: 26px 20px; }
+      .lead-form { grid-template-columns: 1fr; }
+      .field.full, .consent, .lead-form .button { grid-column: auto; }
+      .result-row { grid-template-columns: 1fr; gap: 7px; }
+      .modal { padding: 12px; }
+      .modal-panel { padding: 30px 20px 24px; box-shadow: 4px 4px 0 var(--ink); }
+    }
+  </style>
+  <!-- Inserimento libreria EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // Inserisci qui la tua Public Key di EmailJS
+      emailjs.init("Mh79Trdgb6PvKDwAs");
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#inizio" aria-label="FiscoSì.it, torna all'inizio">Fisco<mark>SÌ</mark>.it</a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Apri menu</button>
+
+      <nav class="menu" id="main-menu" aria-label="Menu principale">
+        <a href="#audit">L’Audit</a>
+        <a href="#funzionamento">Come funziona</a>
+        <a href="#processo">Il processo</a>
+        <a href="#risultato">Cosa ricevi</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <button class="top-cta js-open-form" type="button">Ti richiamiamo noi</button>
+    </div>
+  </header>
+
+  <main id="inizio">
+    <article>
+      <div class="article hero">
+        <p class="eyebrow">Audit Fiscale Strategico per SRL</p>
+        <h1>Ti proponiamo di sottoporre la tua azienda a un Audit Fiscale Strategico.</h1>
+        <p class="hero-lead">Un processo di analisi pensato per ricostruire il funzionamento fiscale della tua impresa, verificare la struttura attuale e individuare le aree che meritano un approfondimento tecnico.</p>
+      </div>
+
+      <section class="article" id="audit">
+        <h2>L’Audit Fiscale Strategico non è una semplice analisi.</h2>
+        <p class="standfirst">È l’intervento con cui viene ricostruita l’intera struttura fiscale, economica e societaria della tua impresa per individuare tutto ciò che oggi può indebolirla.</p>
+        <p>Nasce per capire come è organizzata oggi la tua azienda dal punto di vista fiscale.</p>
+
+        <ul class="editorial-list">
+          <li>Costi gestiti in modo inefficiente.</li>
+          <li>Strutture societarie diventate obsolete.</li>
+          <li>Utili tassati senza una pianificazione adeguata.</li>
+          <li>Investimenti effettuati senza sfruttare tutte le opportunità previste dalla normativa.</li>
+          <li>Patrimoni esposti.</li>
+          <li>Flussi economici che continuano a disperdere risorse.</li>
+          <li>Rischi fiscali che nessuno ha ancora portato alla luce.</li>
+        </ul>
+
+        <p>L’Audit entra nella tua azienda, collega informazioni che normalmente vengono osservate separatamente e mostra con precisione dove l’impresa sta perdendo denaro, protezione ed efficienza.</p>
+        <p class="large-line">Non serve semplicemente a “capire”. Serve a <span class="highlight">salvare l’azienda</span> prima di perdere utili e protezione, e a difenderla dai rischi fiscali.</p>
+        <p>Perché l’inefficienza fiscale non rimane ferma. Si ripete. Ogni mese. Ogni versamento. Ogni distribuzione di utili. Ogni investimento. Ogni anno in cui nessuno la individua.</p>
+        <p>Ed è per questo che l’Audit Fiscale Strategico può salvare un’azienda. Non perché promette formule magiche. Ma perché rende finalmente visibile tutto ciò che, continuando a rimanere nascosto, può consumare utili, liquidità e patrimonio.</p>
+      </section>
+
+      <section class="article" id="funzionamento">
+        <h2>L’Audit ricostruisce la tua azienda pezzo per pezzo.</h2>
+        <p class="standfirst">Il primo passaggio è la raccolta delle informazioni necessarie a comprendere il funzionamento dell’impresa.</p>
+        <p>Il consulente non osserva una singola dichiarazione, un singolo costo o un singolo anno. Cerca di ricostruire il rapporto tra tutte le parti.</p>
+
+        <ol class="numbered">
+          <li><strong>Struttura societaria.</strong> Come è organizzata oggi la società e come si è evoluta nel tempo.</li>
+          <li><strong>Flussi, compensi e utili.</strong> Come entrano, vengono utilizzate ed escono le risorse economiche; come vengono remunerati soci, amministratori e figure chiave.</li>
+          <li><strong>Investimenti e patrimonio.</strong> Come vengono gestiti beni, immobili e operazioni future.</li>
+          <li><strong>Fiscalità applicata.</strong> Quali strumenti vengono già utilizzati e quali aree non sono mai state esaminate.</li>
+        </ol>
+
+        <p>Ogni informazione viene prima analizzata singolarmente. Poi viene collegata alle altre.</p>
+        <p>Perché una decisione che appare corretta da sola può produrre un risultato molto diverso quando viene osservata all’interno dell’intero sistema aziendale.</p>
+      </section>
+
+      <section class="article" id="processo">
+        <h2>Immagina di vedere la tua azienda come non l’hai mai vista prima.</h2>
+        <p class="standfirst">Immagina di parlare con il consulente.</p>
+        <p>Sullo schermo non compare soltanto il bilancio. Compare la tua azienda.</p>
+        <p>Le società. Gli immobili. Gli utili. I compensi. Gli investimenti. I contratti. I flussi tra una voce e l’altra.</p>
+        <p>Il consulente prende una prima informazione e comincia a seguirne il percorso. Da dove nasce. Dove arriva. Come viene trattata. Quali conseguenze produce sul resto della struttura.</p>
+
+        <blockquote>“Questa parte è stata organizzata quando l’azienda aveva già queste dimensioni?”</blockquote>
+
+        <p>La risposta apre una nuova verifica.</p>
+        <p>Magari quella struttura era perfettamente adatta cinque anni fa. Quando il fatturato era diverso. Quando gli investimenti erano diversi. Quando i soci avevano esigenze diverse.</p>
+        <p>Oggi, però, l’azienda è cresciuta. La struttura è rimasta la stessa.</p>
+        <p>Il consulente collega quel punto alla remunerazione degli amministratori. Poi agli utili. Poi agli investimenti futuri. Non conclude immediatamente che esista un problema. Verifica. Apre la normativa applicabile. Confronta le alternative. Valuta se quella parte è già efficiente o se merita un approfondimento tecnico.</p>
+
+        <h3>Successivamente passa agli investimenti.</h3>
+        <p>Un macchinario acquistato. Un immobile detenuto dalla società. Un bene che verrà acquisito nei prossimi mesi.</p>
+        <p>Ogni operazione viene osservata non solo per ciò che è costata, ma per il modo in cui è stata inserita nell’intera struttura fiscale.</p>
+
+        <h3>Poi arrivano i costi.</h3>
+        <p>Non per controllare se una fattura sia stata registrata. Ma per capire come le principali categorie di spesa vengono trattate, documentate e collegate all’attività dell’impresa.</p>
+        <p>Poi i rapporti tra soci e società. Poi gli immobili. Poi i contratti. Poi le opportunità previste dalla normativa che potrebbero essere compatibili con le caratteristiche dell’azienda.</p>
+        <p class="large-line">A un certo punto, informazioni che prima sembravano isolate iniziano a formare un’unica immagine.</p>
+        <p>Non stai più osservando singole tasse. Stai osservando il sistema che le produce.</p>
+
+        <div class="result-grid">
+          <div class="result-row"><strong>Aree efficienti</strong><span>Dove non è necessario intervenire.</span></div>
+          <div class="result-row"><strong>Aree da verificare</strong><span>Dove mancano informazioni o documenti.</span></div>
+          <div class="result-row"><strong>Aree di opportunità</strong><span>Dove la struttura attuale potrebbe essere migliorata.</span></div>
+        </div>
+
+        <p>Questo è il valore dell’Audit: non promettere un risultato prima di avere analizzato l’azienda, ma permettere all’imprenditore di sapere finalmente dove si trova, cosa è già stato organizzato bene e quali decisioni meritano una valutazione più approfondita.</p>
+      </section>
+
+      <section class="article" id="risultato">
+        <h2>Alla fine dell’Audit ricevi una direzione fiscale chiara.</h2>
+        <p class="standfirst">Al termine dell’Audit, la tua azienda non sarà più una serie di numeri, documenti e dichiarazioni osservati separatamente.</p>
+        <p>Avrai davanti una mappa completa.</p>
+        <p>Vedrai dove il denaro entra. Dove viene tassato. Dove viene disperso. Dove la struttura societaria protegge l’impresa. Dove invece la espone.</p>
+        <p>Vedrai quali decisioni prese anni fa continuano ancora oggi a produrre conseguenze. Quali investimenti non stanno generando tutti i vantaggi disponibili. Quali flussi potrebbero essere gestiti in modo più efficiente. Quali aree richiedono un intervento immediato.</p>
+        <p class="large-line">L’Audit non ti lascia con una domanda. Ti lascia con una visione che prima non avevi.</p>
+        <p>E una volta che hai visto dove la tua azienda è vulnerabile, non puoi più tornare a gestirla come se quella vulnerabilità non esistesse.</p>
+      </section>
+
+      <section class="article" id="richiedi">
+        <div class="action-box">
+          <p class="eyebrow">Audit Fiscale Strategico per SRL</p>
+          <h2>Inserisci il tuo cellulare. Ti richiamiamo noi.</h2>
+          <p>Un consulente specializzato ti ricontatterà per comprendere la situazione della tua SRL e raccogliere le prime informazioni.</p>
+          <button class="button js-open-form" type="button">Ti richiamiamo noi</button>
+          <p class="action-note">Dopo l’invio dei dati dovrai solo attendere la chiamata del consulente.</p>
+        </div>
+      </section>
+
+      <section class="article faq" id="faq">
+        <p class="eyebrow">FAQ</p>
+        <h2>Prima di richiedere l’Audit potresti chiederti questo.</h2>
+
+        <details>
+          <summary>Abbiamo già il nostro commercialista. L’Audit serve comunque?</summary>
+          <p>Sì, perché l’Audit non sostituisce il commercialista e non nasce per giudicarne il lavoro. Il commercialista si occupa degli adempimenti, della contabilità e della corretta gestione fiscale ordinaria. L’Audit osserva invece la struttura complessiva dell’azienda per verificare se esistono aree di pianificazione, opportunità o decisioni da approfondire.</p>
+        </details>
+
+        <details>
+          <summary>Il nostro commercialista ci avrebbe già avvisati.</summary>
+          <p>Potrebbe averlo fatto sulle aree che rientrano nel suo incarico e nella gestione ordinaria dell’azienda. L’Audit, però, nasce proprio per effettuare una verifica più ampia e coordinata della struttura fiscale, societaria, patrimoniale ed economica. Non cerca un errore. Cerca una visione completa.</p>
+        </details>
+
+        <details>
+          <summary>Abbiamo già un ufficio amministrativo interno.</summary>
+          <p>L’Audit non valuta la competenza delle persone interne. Analizza la struttura dell’impresa con uno sguardo esterno e specializzato. Anche le aziende ben organizzate ricorrono a verifiche periodiche proprio per confrontare l’assetto attuale con l’evoluzione dell’azienda e della normativa.</p>
+        </details>
+
+        <details>
+          <summary>E se non emergesse alcuna opportunità?</summary>
+          <p>Anche questo sarebbe un risultato utile. Significherebbe avere verificato la struttura e sapere che le principali aree analizzate sono già coerenti con la situazione dell’azienda. L’Audit serve a decidere sulla base di elementi concreti, non a creare per forza un intervento successivo.</p>
+        </details>
+
+        <details>
+          <summary>L’Audit garantisce una riduzione delle imposte?</summary>
+          <p>No. Prima dell’analisi seria nessuno può garantire un risultato specifico. L’Audit serve a individuare eventuali inefficienze, opportunità e aree da approfondire nel rispetto della normativa. I risultati dipendono dalla situazione reale dell’impresa.</p>
+        </details>
+
+        <details>
+          <summary>È adatto a qualsiasi impresa?</summary>
+          <p>Il servizio è rivolto alle SRL e alle realtà aziendali che desiderano verificare se la struttura fiscale, societaria e patrimoniale è ancora adeguata alle dimensioni, agli utili, agli investimenti e agli obiettivi attuali. Non è un servizio pensato per privati.</p>
+        </details>
+
+        <details>
+          <summary>Quanto tempo richiede?</summary>
+          <p>Le tempistiche dipendono dalla complessità della struttura e dalla documentazione disponibile. Durante il primo contatto il consulente raccoglierà le informazioni iniziali e ti spiegherà le fasi previste.</p>
+        </details>
+
+        <details>
+          <summary>Cosa devo fare per iniziare?</summary>
+          <p>Devi semplicemente cliccare il pulsante, inserire il cellulare richiesto e attendere la chiamata del consulente. Sarà lui a spiegarti quali informazioni servono e come avviare correttamente l’analisi.</p>
+        </details>
+      </section>
+
+      <section class="article closing">
+        <h2>Fai analizzare la tua azienda prima di prendere la prossima decisione fiscale.</h2>
+        <p>Richiedi l’Audit Fiscale Strategico e attendi la chiamata del consulente.</p>
+        <button class="button js-open-form" type="button">Ti richiamiamo noi</button>
+      </section>
+    </article>
+  </main>
+
+
+  <div class="modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" aria-label="Chiudi il modulo">×</button>
+      <p class="eyebrow">Audit Fiscale Strategico</p>
+      <h2 id="modal-title">Ti richiamiamo noi.</h2>
+      <p>Inserisci il tuo cellulare. Un consulente specializzato ti ricontatterà.</p>
+
+      <!-- Form aggiornato con il solo campo cellulare -->
+      <form class="lead-form" id="contact-form">
+        <div class="field full">
+          <label for="cellulare">Cellulare</label>
+          <input id="cellulare" name="cellulare" type="tel" inputmode="tel" autocomplete="tel" placeholder="Es. 333 123 4567" required>
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="privacy" required>
+          <span>Acconsento al trattamento dei dati per essere ricontattato in merito all’Audit Fiscale Strategico.</span>
+        </label>
+        <button class="button" type="submit">Ti richiamiamo noi</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="article">Le informazioni presenti in questa pagina hanno finalità illustrative e non costituiscono consulenza fiscale, legale o finanziaria. Ogni valutazione dipende dalla situazione concreta dell’impresa e dalla normativa applicabile.</div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    const modal = document.querySelector('#contact-modal');
+    const modalPanel = modal.querySelector('.modal-panel');
+    const closeButton = modal.querySelector('.modal-close');
+    const openButtons = document.querySelectorAll('.js-open-form');
+    const form = modal.querySelector('.lead-form');
+    let lastFocusedElement = null;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    function openModal() {
+      lastFocusedElement = document.activeElement;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      window.setTimeout(() => modal.querySelector('input').focus(), 0);
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+
+    openButtons.forEach(button => button.addEventListener('click', openModal));
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', event => {
+      if (!modalPanel.contains(event.target)) closeModal();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Configurazione invio EmailJS
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Invio in corso...';
+
+      // Parametri inviati al template EmailJS (assicurati di creare il template con la variabile {{cellulare}})
+      const templateParams = {
+        cellulare: document.getElementById('cellulare').value
+      };
+
+      // Sostituisci "TUO_SERVICE_ID" e "TUO_TEMPLATE_ID" con i dati presi dalla tua dashboard di EmailJS
+      emailjs.send('service_b6i8u3a', 'template_duc1ojk', templateParams)
+        .then(() => {
+          alert('Richiesta inviata con successo! Ti ricontatteremo presto.');
+          form.reset();
+          closeModal();
+        }, (error) => {
+          alert('Errore durante l\'invio. Riprova più tardi.');
+          console.log('FAILED...', error);
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Ti richiamiamo noi';
+        });
+    });
+  </script>
+</body>
+</html>
